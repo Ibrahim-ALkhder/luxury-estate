@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "properties": "العقارات",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "contact": "اتصل بنا",
+    "login": "المشرف"
+  },
+  "hero": {
+    "title": "اكتشف الحياة الاستثنائية",
+    "highlight": "بأسلوب جديد",
+    "subtitle": "عقارات فاخرة مختارة لأكثر العملاء تميزًا في العالم.",
+    "explore": "استعرض المجموعة",
+    "contact": "تحدث إلى مختص"
+  },
+  "featured": {
+    "title": "المساكن المميزة",
+    "subtitle": "مختارات استثنائية"
+  },
+  "about": {
+    "title": "إرث من الفخامة",
+    "description": "لأكثر من 15 عامًا، كانت LUXESTATE الاسم الموثوق في العقارات الفاخرة، حيث تقدم خدمة لا مثيل لها وتكتم للعملاء النخبة حول العالم.",
+    "years": "سنوات الخبرة",
+    "properties": "عقار فاخر تم بيعه"
+  },
+  "carousel": {
+    "title": "المجموعة المختارة",
+  "seeAll": "عرض كل المجموعة"
+  },
+  "services": {
+    "title": "خدمات مخصصة",
+    "subtitle": "حلول عقارية شاملة مصممة لأسلوب حياتك.",
+    "buying": { "title": "اقتناء العقارات", "description": "إرشاد خبير خلال كل خطوة لشراء منزل أحلامك." },
+    "consulting": { "title": "استشارات استثمارية", "description": "نصائح استراتيجية لمحافظ عقارية عالية القيمة." },
+    "management": { "title": "إدارة العقارات", "description": "خدمة إدارة كاملة لضمان صيانة أصولك بشكل مثالي." },
+    "design": { "title": "التصميم الداخلي", "description": "مصممين عالميين لإنشاء مساحات تعكس هويتك." }
+  },
+  "search": {
+    "title": "اعثر على عقارك المثالي",
+    "subtitle": "استخدم بحثنا الذكي لاكتشاف المساكن التي تتناسب مع رؤيتك.",
+    "keyword": "كلمة مفتاحية",
+    "type": "النوع",
+    "minPrice": "الحد الأدنى",
+    "maxPrice": "الحد الأقصى",
+    "bedrooms": "الغرف",
+    "search": "بحث"
+  },
+  "testimonials": {
+    "title": "آراء العملاء"
+  },
+  "contact": {
+    "title": "تواصل معنا",
+    "subtitle": "مستشارونا على استعداد لمساعدتك.",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "message": "رسالتك",
+    "send": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "success": "تم الإرسال بنجاح!",
+    "error": "فشل الإرسال. حاول مرة أخرى."
+  },
+  "footer": {
+    "description": "أفضل استشارات عقارية فاخرة في العالم.",
+    "quickLinks": "روابط سريعة",
+    "properties": "العقارات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "followUs": "تابعنا",
+    "newsletter": "النشرة البريدية",
+    "newsletterPlaceholder": "بريدك الإلكتروني",
+    "subscribe": "اشتراك",
+    "rights": "© 2026 LUXESTATE. جميع الحقوق محفوظة.",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة"
+  },
+  "propertiesPage": {
+    "title": "عقاراتنا",
+    "subtitle": "مجموعة حصرية من المساكن الفاخرة",
+    "searchPlaceholder": "ابحث بالاسم أو الموقع...",
+    "allTypes": "كل الأنواع",
+    "noResults": "لا توجد عقارات.",
+    "details": "عرض التفاصيل"
+  },
+  "propertyDetails": {
+  "back": "العودة للعقارات",
+  "scheduleViewing": "جدولة مشاهدة",
+  "bookNow": "احجز الآن",
+  "bedrooms": "غرف نوم",
+  "bathrooms": "حمامات",
+  "area": "المساحة",
+  "features": "المميزات",
+  "status": {
+    "available": "متاح",
+    "sold": "مباع",
+    "underConstruction": "قيد الإنشاء"
+  },
+  "statusLabel": "الحالة",
+  "contactAgent": "تواصل مع الوكيل",
+  "floor": "الطابق",
+  "occupancy": "عدد الأشخاص",
+  "persons": "أشخاص",
+  "soundInsulation": "عزل الصوت",
+  "daylightFactor": "عامل الإضاءة الطبيعية",
+  "ceilingHeight": "ارتفاع السقف",
+  "floorPlan": "المخطط الأرضي",
+  "bookingMessage": "أنت على وشك حجز {title}. سيتواصل معك وكيلنا قريبًا.",
+  "bookingSuccess": "تم إرسال طلب الحجز!",
+  "confirm": "تأكيد",
+  "contactSuccess": "تم إرسال الرسالة! سنتواصل معك قريبًا."
+},
+  "admin": {
+    
+    "login": "تسجيل دخول المشرف",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "دخول",
+    "error": "بيانات غير صحيحة",
+    "hint": "admin@luxestate.com / admin123",
+    "dashboard": "لوحة التحكم",
+    "logout": "تسجيل خروج",
+    "addProperty": "إضافة عقار",
+    "editProperty": "تعديل العقار",
+    "deleteProperty": "حذف",
+    "title": "العنوان",
+    "location": "الموقع",
+    "price": "السعر",
+    "type": "النوع",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "الحمامات",
+    "area": "المساحة (م²)",
+    "imageUrl": "رابط الصورة",
+    "status": "الحالة",
+    "available": "متاح",
+    "sold": "مباع",
+    "underConstruction": "قيد الإنشاء",
+    "features": "المميزات (مفصولة بفواصل)",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "advancedDetails": "تفاصيل متقدمة",
+  "floorPlanImageUrl": "رابط صورة المخطط الأرضي",
+  "measurements": "القياسات (مثال: 140 م², 2.65, 3.05...)"
+}
+
+}

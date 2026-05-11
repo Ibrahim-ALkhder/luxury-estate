@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "installCommand": "npm install",
+  "env": {
+    "VITE_API_URL": "@vite_api_url",
+    "VITE_API_KEY": "@vite_api_key",
+    "VITE_ANALYTICS_ID": "@vite_analytics_id",
+    "VITE_GA_TRACKING_ID": "@vite_ga_tracking_id",
+    "VITE_STRIPE_PUBLIC_KEY": "@vite_stripe_public_key"
+  }
+}

@@ -12,7 +12,7 @@ export default function PropertyDetails() {
   const property = properties.find((p) => p.id === id);
   const [showBooking, setShowBooking] = useState(false);
   const [showContact, setShowContact] = useState(false);
-  const [lightbox, setLightbox] = useState<string | null>(null); // لتكبير أي صورة
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const locale = i18n.language === 'ar' ? 'ar-SA' : 'en-US';
 
   if (!property) {
@@ -29,8 +29,15 @@ export default function PropertyDetails() {
   const location = typeof property.location === 'object' ? (isArabic ? property.location.ar : property.location.en) : property.location;
   const description = property.description ? (isArabic ? property.description.ar : property.description.en) : '';
   const features = property.features ? (typeof property.features === 'object' ? (isArabic ? property.features.ar : property.features.en) : property.features) : [];
+  const hasAdvanced = property.hasAdvanced;
 
-  const hasAdvanced = property.hasAdvanced; 
+  // تحديد لون ونص الحالة
+  const statusMap = {
+    available: { bg: 'bg-green-500', text: t('propertyDetails.status.available'), icon: '🟢' },
+    sold: { bg: 'bg-red-500', text: t('propertyDetails.status.sold'), icon: '🔴' },
+    underConstruction: { bg: 'bg-yellow-500', text: t('propertyDetails.status.underConstruction'), icon: '🟡' },
+  };
+  const status = statusMap[property.status] || statusMap.available;
 
   return (
     <div className="pt-24 pb-24 bg-cream-50 min-h-screen">
@@ -41,7 +48,12 @@ export default function PropertyDetails() {
           </Link>
         </motion.div>
 
-        {/* صفان متساويان في الارتفاع الأدنى ويمتدان مع المحتوى */}
+        {/* شريط الحالة البارز */}
+        <div className={`${status.bg} text-white px-6 py-3 rounded-2xl mb-8 flex items-center justify-center gap-3 text-lg font-bold shadow-lg`}>
+          <span className="text-2xl">{status.icon}</span>
+          <span>{status.text}</span>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 min-h-[500px]">
           {/* العمود الأيسر: صورة قابلة للنقر لتكبيرها */}
           <motion.div
@@ -77,15 +89,13 @@ export default function PropertyDetails() {
               <span className="flex items-center gap-1"><Maximize2 className="w-4 h-4 text-gold-500" /> {property.area} m²</span>
             </div>
 
-            {/* الوصف إن وجد */}
             {description && (
               <p className="text-charcoal-600 leading-relaxed mb-4 text-sm">{description}</p>
             )}
 
-            {/* بيانات متقدمة */}
             {hasAdvanced && (
               <div className="space-y-4 flex-1">
-             <hr className="border-cream-200" />
+                <hr className="border-cream-200" />
                 {(property.floor || property.occupancy) && (
                   <div className="flex flex-wrap gap-4 text-charcoal-700 text-sm">
                     {property.floor && (
@@ -148,7 +158,6 @@ export default function PropertyDetails() {
               </div>
             )}
 
-            {/* المميزات دائماً معروضة */}
             {features.length > 0 && (
               <div className="mt-4">
                 <h4 className="font-heading text-lg mb-2 text-charcoal-900">{t('propertyDetails.features')}</h4>
@@ -162,7 +171,6 @@ export default function PropertyDetails() {
               </div>
             )}
 
-            {/* أزرار ثابتة في الأسفل */}
             <div className="mt-auto pt-6 border-t border-cream-200 flex flex-col sm:flex-row gap-3">
               {property.status === 'available' && (
                 <button onClick={() => setShowBooking(true)} className="btn-primary flex-1 flex items-center justify-center gap-2 text-sm">
@@ -185,7 +193,7 @@ export default function PropertyDetails() {
         </div>
       )}
 
-      {/* نوافذ منبثقة (Booking / Contact) */}
+      {/* نافذة الحجز */}
       {showBooking && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
@@ -199,6 +207,7 @@ export default function PropertyDetails() {
         </div>
       )}
 
+      {/* نافذة التواصل */}
       {showContact && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">

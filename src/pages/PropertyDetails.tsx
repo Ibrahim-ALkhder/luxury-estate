@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Bed, Bath, Maximize2, MapPin, Phone, Calendar, Ruler, Sun, Volume2, ArrowUp, Check, Expand } from 'lucide-react';
+import { ArrowLeft, Bed, Bath, Maximize2, MapPin, Phone, Calendar, Ruler, Sun, Volume2, ArrowUp, Check, Expand, Circle } from 'lucide-react';
 import { usePropertyStore } from '../store/propertyStore';
 import { useState } from 'react';
 
@@ -31,13 +31,28 @@ export default function PropertyDetails() {
   const features = property.features ? (typeof property.features === 'object' ? (isArabic ? property.features.ar : property.features.en) : property.features) : [];
   const hasAdvanced = property.hasAdvanced;
 
-  // تحديد لون ونص الحالة
-  const statusMap = {
-    available: { bg: 'bg-green-500', text: t('propertyDetails.status.available'), icon: '🟢' },
-    sold: { bg: 'bg-red-500', text: t('propertyDetails.status.sold'), icon: '🔴' },
-    underConstruction: { bg: 'bg-yellow-500', text: t('propertyDetails.status.underConstruction'), icon: '🟡' },
+  // تعريف الحالة بشكل أنيق
+  const statusConfig = {
+    available: {
+      color: 'text-green-600',
+      bg: 'bg-green-100/70',
+      iconColor: 'bg-green-500',
+      text: t('propertyDetails.status.available'),
+    },
+    sold: {
+      color: 'text-red-600',
+      bg: 'bg-red-100/70',
+      iconColor: 'bg-red-500',
+      text: t('propertyDetails.status.sold'),
+    },
+    underConstruction: {
+      color: 'text-amber-600',
+      bg: 'bg-amber-100/70',
+      iconColor: 'bg-amber-500',
+      text: t('propertyDetails.status.underConstruction'),
+    },
   };
-  const status = statusMap[property.status] || statusMap.available;
+  const status = statusConfig[property.status] || statusConfig.available;
 
   return (
     <div className="pt-24 pb-24 bg-cream-50 min-h-screen">
@@ -48,14 +63,8 @@ export default function PropertyDetails() {
           </Link>
         </motion.div>
 
-        {/* شريط الحالة البارز */}
-        <div className={`${status.bg} text-white px-6 py-3 rounded-2xl mb-8 flex items-center justify-center gap-3 text-lg font-bold shadow-lg`}>
-          <span className="text-2xl">{status.icon}</span>
-          <span>{status.text}</span>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 min-h-[500px]">
-          {/* العمود الأيسر: صورة قابلة للنقر لتكبيرها */}
+          {/* العمود الأيسر: صورة */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -81,7 +90,16 @@ export default function PropertyDetails() {
             animate={{ opacity: 1, x: 0 }}
             className="bg-white rounded-3xl shadow-luxury p-8 flex flex-col"
           >
-            <p className="text-3xl font-bold text-gold-500 mb-4">{property.price.toLocaleString(locale)} SAR</p>
+            {/* السعر مع الحالة بجانبه */}
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <p className="text-3xl font-bold text-gold-500">{property.price.toLocaleString(locale)} SAR</p>
+              
+              {/* شارة الحالة الأنيقة */}
+              <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-sm border border-gold-200 ${status.bg} ${status.color}`}>
+                <span className={`inline-block w-2.5 h-2.5 rounded-full ${status.iconColor}`} />
+                <span className="text-sm font-medium">{status.text}</span>
+              </div>
+            </div>
 
             <div className="flex flex-wrap gap-4 text-charcoal-600 text-sm mb-4">
               <span className="flex items-center gap-1"><Bed className="w-4 h-4 text-gold-500" /> {property.bedrooms} {t('propertyDetails.bedrooms')}</span>
@@ -96,6 +114,7 @@ export default function PropertyDetails() {
             {hasAdvanced && (
               <div className="space-y-4 flex-1">
                 <hr className="border-cream-200" />
+                {/* باقي التفاصيل المتقدمة كما هي */}
                 {(property.floor || property.occupancy) && (
                   <div className="flex flex-wrap gap-4 text-charcoal-700 text-sm">
                     {property.floor && (
@@ -185,7 +204,7 @@ export default function PropertyDetails() {
         </div>
       </div>
 
-      {/* Lightbox لعرض الصورة الكاملة */}
+      {/* Lightbox و النوافذ المنبثقة كما هي */}
       {lightbox && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-8" onClick={() => setLightbox(null)}>
           <img src={lightbox} className="max-w-full max-h-full object-contain" />
@@ -193,7 +212,6 @@ export default function PropertyDetails() {
         </div>
       )}
 
-      {/* نافذة الحجز */}
       {showBooking && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
@@ -207,7 +225,6 @@ export default function PropertyDetails() {
         </div>
       )}
 
-      {/* نافذة التواصل */}
       {showContact && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">

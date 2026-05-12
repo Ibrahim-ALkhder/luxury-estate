@@ -11,7 +11,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const isHome = location.pathname === '/';
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function Navbar() {
     { to: '/#contact', label: t('nav.contact'), isAnchor: true },
   ];
 
-  // الحفاظ على ألوان الناف كما هي دون تغيير
   let headerBg, textColor, linkColor, linkHover, activeBorder;
   if (scrolled) {
     if (isHome) {
@@ -78,7 +76,6 @@ export default function Navbar() {
           LUX<span className="text-gold-500">ESTATE</span>
         </Link>
 
-        {/* سطح المكتب */}
         <div className="hidden items-center gap-10 md:flex">
           {links.map((link) =>
             link.isAnchor ? (
@@ -116,13 +113,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* زر القائمة للجوال */}
         <button className={`md:hidden ${textColor}`} onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X /> : <Menu />}
         </button>
       </nav>
 
-      {/* قائمة الجوال: عرض أفقي مرتب */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -137,7 +132,7 @@ export default function Navbar() {
                   <button
                     key={link.to}
                     onClick={() => handleAnchor(link.to)}
-                    className={`text-sm font-medium text-gold-500 hover:text-gold-600`}
+                    className="text-sm font-medium text-gold-500 hover:text-gold-600"
                   >
                     {link.label}
                   </button>
@@ -146,7 +141,7 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     onClick={() => setMobileOpen(false)}
-                    className={`text-sm font-medium ${scrolled || !isHome ? 'text-gold-500' : 'text-gold-300'} hover:text-gold-600`}
+                    className="text-sm font-medium text-gold-500 hover:text-gold-600"
                   >
                     {link.label}
                   </Link>
@@ -156,7 +151,7 @@ export default function Navbar() {
               <Link
                 to="/admin"
                 onClick={() => setMobileOpen(false)}
-                className={`text-sm font-medium text-gold-500 border border-gold-500 px-3 py-1 rounded-lg hover:bg-gold-500 hover:text-white`}
+                className="text-sm font-medium text-gold-500 border border-gold-500 px-3 py-1 rounded-lg hover:bg-gold-500 hover:text-white"
               >
                 {t('nav.login')}
               </Link>

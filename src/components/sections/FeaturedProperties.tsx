@@ -13,7 +13,7 @@ const properties = [
     bedrooms: 5,
     bathrooms: 6,
     area: 750,
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&auto=format&fit=crop',
   },
   {
     id: '2',
@@ -23,7 +23,7 @@ const properties = [
     bedrooms: 3,
     bathrooms: 3,
     area: 420,
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&auto=format&fit=crop',
   },
   {
     id: '3',
@@ -33,7 +33,7 @@ const properties = [
     bedrooms: 7,
     bathrooms: 8,
     area: 1200,
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&auto=format&fit=crop',
   },
 ];
 

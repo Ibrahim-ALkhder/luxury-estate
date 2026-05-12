@@ -10,7 +10,7 @@ export default function Hero() {
 
   return (
     <section className="relative flex h-screen items-center justify-center overflow-hidden bg-dark-gradient">
-      {/* Three.js فقط على الشاشات الكبيرة */}
+      {/* Three.js فقط على الشاشات الكبيرة لتوفير GPU */}
       {!isMobile && (
         <div className="absolute inset-0 z-0 opacity-40">
           <Scene3D />
@@ -50,21 +50,21 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* مؤشر التمرير */}
+      {/* مؤشر التمرير (صغير وبسيط) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-10 z-20 left-1/2 -translate-x-1/2 text-gold-400"
+        className="absolute bottom-6 md:bottom-10 z-20 left-1/2 -translate-x-1/2 text-gold-400"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2.5 }}
         >
-          <svg width="24" height="40" viewBox="0 0 24 40" fill="none">
-            <rect x="11" y="4" width="2" height="10" rx="1" fill="currentColor" />
-            <circle cx="12" cy="18" r="6" stroke="currentColor" strokeWidth="2" />
-            <path d="M12 26 L12 32" stroke="currentColor" strokeWidth="2" />
+          <svg width="20" height="32" viewBox="0 0 20 32" fill="none">
+            <rect x="9" y="2" width="2" height="8" rx="1" fill="currentColor" />
+            <circle cx="10" cy="15" r="5" stroke="currentColor" strokeWidth="2" />
+            <path d="M10 22 L10 28" stroke="currentColor" strokeWidth="2" />
           </svg>
         </motion.div>
       </motion.div>

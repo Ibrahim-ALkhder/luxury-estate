@@ -17,39 +17,43 @@ export default function PropertyCarousel() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.image-box').forEach((box, i) => {
-        gsap.fromTo(box,
-          { opacity: 0, x: i % 2 === 0 ? -100 : 100, scale: 0.95 },
-          {
-            opacity: 1, x: 0, scale: 1,
-            duration: 1.3, ease: 'power3.out',
-            scrollTrigger: {
-              trigger: box.closest('section'),
-              start: 'top 75%',
-              end: 'bottom 25%',
-              toggleActions: 'play reverse play reverse',
-            },
-          }
-        );
-      });
+      ScrollTrigger.matchMedia({
+        // على الشاشات الأكبر من 768px فقط يتم تفعيل الحركات
+        '(min-width: 768px)': function () {
+          gsap.utils.toArray<HTMLElement>('.image-box').forEach((box, i) => {
+            gsap.fromTo(box,
+              { opacity: 0, x: i % 2 === 0 ? -100 : 100, scale: 0.95 },
+              {
+                opacity: 1, x: 0, scale: 1,
+                duration: 1.3, ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: box.closest('section'),
+                  start: 'top 75%',
+                  end: 'bottom 25%',
+                  toggleActions: 'play reverse play reverse',
+                },
+              }
+            );
+          });
 
-      gsap.utils.toArray<HTMLElement>('.content-card').forEach((card, i) => {
-        gsap.fromTo(card,
-          { opacity: 0, x: i % 2 === 0 ? 100 : -100, scale: 0.95 },
-          {
-            opacity: 1, x: 0, scale: 1,
-            duration: 1.3, delay: 0.2, ease: 'power3.out',
-            scrollTrigger: {
-              trigger: card.closest('section'),
-              start: 'top 75%',
-              end: 'bottom 25%',
-              toggleActions: 'play reverse play reverse',
-            },
-          }
-        );
+          gsap.utils.toArray<HTMLElement>('.content-card').forEach((card, i) => {
+            gsap.fromTo(card,
+              { opacity: 0, x: i % 2 === 0 ? 100 : -100, scale: 0.95 },
+              {
+                opacity: 1, x: 0, scale: 1,
+                duration: 1.3, delay: 0.2, ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: card.closest('section'),
+                  start: 'top 75%',
+                  end: 'bottom 25%',
+                  toggleActions: 'play reverse play reverse',
+                },
+              }
+            );
+          });
+        },
       });
     }, sectionsRef);
-
     return () => ctx.revert();
   }, []);
 
@@ -84,7 +88,6 @@ export default function PropertyCarousel() {
                 imageOnLeft ? 'md:flex-row' : 'md:flex-row-reverse'
               } gap-8 md:gap-12`}
             >
-              {/* الصورة */}
               <div
                 className="image-box w-full md:w-[45%] h-[300px] md:h-full rounded-[40px] overflow-hidden"
                 style={{
@@ -100,7 +103,6 @@ export default function PropertyCarousel() {
                 />
               </div>
 
-              {/* النص */}
               <div className="content-card flex-1 flex justify-center items-center w-full md:w-auto">
                 <div className={`w-full max-w-[480px] p-6 rounded-3xl shadow-2xl ${cardBg}`}>
                   <div className="flex items-center gap-2 text-gold-500 mb-3">
@@ -127,8 +129,6 @@ export default function PropertyCarousel() {
                 </div>
               </div>
             </div>
-
-            {/* تدرج سفلي للاندماج */}
             <div className="absolute bottom-0 left-0 w-full h-24 z-30 bg-gradient-to-b from-transparent to-black/10 pointer-events-none" />
           </section>
         );

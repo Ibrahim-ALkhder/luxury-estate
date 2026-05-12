@@ -17,41 +17,36 @@ export default function PropertyCarousel() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      ScrollTrigger.matchMedia({
-        // على الشاشات الأكبر من 768px فقط يتم تفعيل الحركات
-        '(min-width: 768px)': function () {
-          gsap.utils.toArray<HTMLElement>('.image-box').forEach((box, i) => {
-            gsap.fromTo(box,
-              { opacity: 0, x: i % 2 === 0 ? -100 : 100, scale: 0.95 },
-              {
-                opacity: 1, x: 0, scale: 1,
-                duration: 1.3, ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: box.closest('section'),
-                  start: 'top 75%',
-                  end: 'bottom 25%',
-                  toggleActions: 'play reverse play reverse',
-                },
-              }
-            );
-          });
+      gsap.utils.toArray<HTMLElement>('.image-box').forEach((box, i) => {
+        gsap.fromTo(box,
+          { opacity: 0, x: i % 2 === 0 ? -100 : 100, scale: 0.95 },
+          {
+            opacity: 1, x: 0, scale: 1,
+            duration: 1.3, ease: 'power3.out',
+            scrollTrigger: {
+              trigger: box.closest('section'),
+              start: 'top 75%',
+              end: 'bottom 25%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        );
+      });
 
-          gsap.utils.toArray<HTMLElement>('.content-card').forEach((card, i) => {
-            gsap.fromTo(card,
-              { opacity: 0, x: i % 2 === 0 ? 100 : -100, scale: 0.95 },
-              {
-                opacity: 1, x: 0, scale: 1,
-                duration: 1.3, delay: 0.2, ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: card.closest('section'),
-                  start: 'top 75%',
-                  end: 'bottom 25%',
-                  toggleActions: 'play reverse play reverse',
-                },
-              }
-            );
-          });
-        },
+      gsap.utils.toArray<HTMLElement>('.content-card').forEach((card, i) => {
+        gsap.fromTo(card,
+          { opacity: 0, x: i % 2 === 0 ? 100 : -100, scale: 0.95 },
+          {
+            opacity: 1, x: 0, scale: 1,
+            duration: 1.3, delay: 0.2, ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card.closest('section'),
+              start: 'top 75%',
+              end: 'bottom 25%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        );
       });
     }, sectionsRef);
     return () => ctx.revert();
@@ -100,6 +95,7 @@ export default function PropertyCarousel() {
                   alt={title}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 

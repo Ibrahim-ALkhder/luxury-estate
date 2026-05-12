@@ -38,6 +38,7 @@ export default function Navbar() {
     { to: '/#contact', label: t('nav.contact'), isAnchor: true },
   ];
 
+  // الحفاظ على ألوان الناف كما هي دون تغيير
   let headerBg, textColor, linkColor, linkHover, activeBorder;
   if (scrolled) {
     if (isHome) {
@@ -115,27 +116,28 @@ export default function Navbar() {
           </Link>
         </div>
 
+        {/* زر القائمة للجوال */}
         <button className={`md:hidden ${textColor}`} onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X /> : <Menu />}
         </button>
       </nav>
 
-      {/* قائمة الجوال المنبثقة */}
+      {/* قائمة الجوال: عرض أفقي مرتب */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`${scrolled || !isHome ? 'glass' : 'bg-charcoal-900/90'} overflow-hidden md:hidden`}
+            className={`${scrolled || !isHome ? 'glass' : 'bg-charcoal-900/90'} md:hidden`}
           >
-            <div className="flex flex-col px-6 py-4 space-y-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-6 py-4 justify-center">
               {links.map((link) =>
                 link.isAnchor ? (
                   <button
                     key={link.to}
                     onClick={() => handleAnchor(link.to)}
-                    className={`text-base font-medium text-left ${scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} hover:text-gold-500 transition-colors`}
+                    className={`text-sm font-medium text-gold-500 hover:text-gold-600`}
                   >
                     {link.label}
                   </button>
@@ -144,19 +146,17 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     onClick={() => setMobileOpen(false)}
-                    className={`text-base font-medium ${scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} hover:text-gold-500 transition-colors`}
+                    className={`text-sm font-medium ${scrolled || !isHome ? 'text-gold-500' : 'text-gold-300'} hover:text-gold-600`}
                   >
                     {link.label}
                   </Link>
                 )
               )}
-              <div className="pt-2 border-t border-white/20">
-                <LocaleSwitcher textColor={scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} />
-              </div>
+              <LocaleSwitcher textColor="text-gold-500" />
               <Link
                 to="/admin"
                 onClick={() => setMobileOpen(false)}
-                className={`text-base font-medium ${scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} hover:text-gold-500 transition-colors`}
+                className={`text-sm font-medium text-gold-500 border border-gold-500 px-3 py-1 rounded-lg hover:bg-gold-500 hover:text-white`}
               >
                 {t('nav.login')}
               </Link>

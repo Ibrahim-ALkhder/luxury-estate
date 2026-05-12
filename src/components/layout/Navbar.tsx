@@ -38,7 +38,6 @@ export default function Navbar() {
     { to: '/#contact', label: t('nav.contact'), isAnchor: true },
   ];
 
-  // تحديد خلفية الشريط ولون النص بناءً على الحالة والصفحة
   let headerBg, textColor, linkColor, linkHover, activeBorder;
   if (scrolled) {
     if (isHome) {
@@ -53,7 +52,6 @@ export default function Navbar() {
     linkHover = 'hover:text-gold-500';
     activeBorder = 'text-gold-500 border-b-2 border-gold-500';
   } else {
-    // لم يتم التمرير
     if (isHome) {
       headerBg = 'bg-transparent';
       textColor = 'text-white';
@@ -79,6 +77,7 @@ export default function Navbar() {
           LUX<span className="text-gold-500">ESTATE</span>
         </Link>
 
+        {/* سطح المكتب */}
         <div className="hidden items-center gap-10 md:flex">
           {links.map((link) =>
             link.isAnchor ? (
@@ -121,35 +120,47 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* قائمة الجوال المنبثقة */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`${scrolled || !isHome ? 'glass' : 'bg-charcoal-900/90'} flex flex-col gap-4 px-6 pb-6 md:hidden`}
+            className={`${scrolled || !isHome ? 'glass' : 'bg-charcoal-900/90'} overflow-hidden md:hidden`}
           >
-            {links.map((link) =>
-              link.isAnchor ? (
-                <button
-                  key={link.to}
-                  onClick={() => handleAnchor(link.to)}
-                  className={scrolled || !isHome ? 'text-charcoal-800' : 'text-white'}
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setMobileOpen(false)}
-                  className={scrolled || !isHome ? 'text-charcoal-800' : 'text-white'}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <LocaleSwitcher textColor={scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} />
+            <div className="flex flex-col px-6 py-4 space-y-3">
+              {links.map((link) =>
+                link.isAnchor ? (
+                  <button
+                    key={link.to}
+                    onClick={() => handleAnchor(link.to)}
+                    className={`text-base font-medium text-left ${scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} hover:text-gold-500 transition-colors`}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setMobileOpen(false)}
+                    className={`text-base font-medium ${scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} hover:text-gold-500 transition-colors`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+              <div className="pt-2 border-t border-white/20">
+                <LocaleSwitcher textColor={scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} />
+              </div>
+              <Link
+                to="/admin"
+                onClick={() => setMobileOpen(false)}
+                className={`text-base font-medium ${scrolled || !isHome ? 'text-charcoal-800' : 'text-white'} hover:text-gold-500 transition-colors`}
+              >
+                {t('nav.login')}
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

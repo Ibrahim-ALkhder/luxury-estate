@@ -2,15 +2,20 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import Scene3D from '../3d/Scene';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from '../../hooks/use-media-query';
 
 export default function Hero() {
   const { t } = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   return (
     <section className="relative flex h-screen items-center justify-center overflow-hidden bg-dark-gradient">
-      <div className="absolute inset-0 z-0 opacity-40">
-        <Scene3D />
-      </div>
+      {/* Three.js فقط على الشاشات الكبيرة */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-0 opacity-40">
+          <Scene3D />
+        </div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal-900/60 to-charcoal-900 z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent z-10" />
 
@@ -28,18 +33,18 @@ export default function Hero() {
         >
           {t('hero.subtitle')}
         </motion.span>
-        <h1 className="font-heading text-5xl md:text-8xl font-bold leading-tight mt-4">
+        <h1 className="font-heading text-4xl md:text-8xl font-bold leading-tight mt-4">
           <span className="text-white">{t('hero.title')} </span>
           <span className="bg-gold-gradient bg-clip-text text-transparent">{t('hero.highlight')}</span>
         </h1>
-        <p className="mt-8 text-xl text-gold-200 max-w-2xl mx-auto">
+        <p className="mt-6 md:mt-8 text-base md:text-xl text-gold-200 max-w-2xl mx-auto px-2">
           {t('hero.subtitle')}
         </p>
-        <div className="mt-12 flex flex-wrap justify-center gap-6">
-          <Link to="/properties" className="btn-primary">
+        <div className="mt-10 md:mt-12 flex flex-wrap justify-center gap-4 md:gap-6">
+          <Link to="/properties" className="btn-primary text-sm md:text-base">
             {t('hero.explore')}
           </Link>
-          <a href="#contact" className="btn-outline">
+          <a href="#contact" className="btn-outline text-sm md:text-base">
             {t('hero.contact')}
           </a>
         </div>

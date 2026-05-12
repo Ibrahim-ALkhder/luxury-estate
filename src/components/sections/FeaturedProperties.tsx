@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import ScrollReveal from '../animations/ScrollReveal';
-import { Heart, Bed, Bath, Maximize2, MapPin } from 'lucide-react';
+import { Heart, Bed, Bath, Maximize2, MapPin, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -76,9 +76,9 @@ function PropertyCard({ property }: { property: typeof properties[0] }) {
           </span>
           <Link
             to={`/properties/${property.id}`}
-            className="text-charcoal-400 hover:text-gold-500 text-xs md:text-sm font-medium whitespace-nowrap ml-2 transition-colors"
+            className="inline-flex items-center gap-1 border border-gold-500 text-gold-500 px-3 py-1.5 rounded-full text-xs md:text-sm font-semibold hover:bg-gold-500 hover:text-white transition-all duration-300"
           >
-            {t('propertiesPage.details')} →
+            {t('propertiesPage.details')} <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>

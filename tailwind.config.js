@@ -1,0 +1,92 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        background: 'rgba(var(--color-bg-rgb), <alpha-value>)',
+        secondary: 'rgba(var(--color-bg-secondary-rgb), <alpha-value>)',
+        card: 'rgba(var(--color-bg-card-rgb), <alpha-value>)',
+        gold: {
+          50: '#FEF7E0',
+          100: '#FDEEB3',
+          200: '#FCE380',
+          300: '#FBD84D',
+          400: '#F7C626',
+          500: '#F5B700',
+          550: '#FFD95A',
+          600: '#C49200',
+          700: '#936E00',
+          800: '#624900',
+          900: '#312500',
+        },
+        muted: 'rgba(var(--color-text-muted-rgb), <alpha-value>)',
+        cream: {
+          50: '#FFFDF7',
+          100: '#FFF9E6',
+          200: '#FFF3CC',
+          300: '#FFE7A3',
+          400: '#FFDB7A',
+          500: '#D4AF37',
+          600: '#B8960F',
+          700: '#8C700B',
+          800: '#604B08',
+          900: '#3D2C04',
+        },
+        charcoal: {
+          50: '#f5f3f0',
+          100: '#e0dcd6',
+          200: '#c2bcb3',
+          300: '#a49d92',
+          400: '#8a8278',
+          500: '#6f685f',
+          600: '#545048',
+          700: '#3c3933',
+          800: '#252320',
+          900: '#111110',
+        },
+      },
+      fontFamily: {
+        heading: ['Poppins', 'sans-serif'],
+        body: ['Poppins', 'sans-serif'],
+        arabic: ['Tajawal', 'sans-serif'],
+      },
+      backgroundImage: {
+        'gold-gradient': 'linear-gradient(135deg, #F5B700 0%, #C49200 100%)',
+      },
+      boxShadow: {
+        'gold': 'var(--shadow-gold)',
+        'gold-glow': 'var(--shadow-gold-glow)',
+        'gold-glow-lg': 'var(--shadow-gold-glow-lg)',
+        'luxury': 'var(--shadow-luxury)',
+        'glass': 'var(--shadow-glass)',
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-gold': 'pulseGold 2s ease-in-out infinite',
+        'drift': 'drift 20s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        pulseGold: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(245, 183, 0, 0.2)' },
+          '50%': { boxShadow: '0 0 40px rgba(245, 183, 0, 0.4)' },
+        },
+        drift: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '25%': { transform: 'translate(10px, -10px)' },
+          '50%': { transform: 'translate(-5px, -15px)' },
+          '75%': { transform: 'translate(-10px, 5px)' },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
+    },
+  },
+  plugins: [require('tailwindcss-animate')],
+};

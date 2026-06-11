@@ -1,0 +1,24 @@
+{
+  "name": "luxury-estate-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsx src/index.ts",
+    "seed": "tsx src/seed.ts",
+    "cleanup": "tsx scripts/cleanup-runner.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/cors": "^2.8.0",
+    "@types/express": "^4.17.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0"
+  }
+}

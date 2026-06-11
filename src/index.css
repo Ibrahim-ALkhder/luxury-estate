@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-rgb: 246, 244, 239;
+    --color-bg-secondary-rgb: 237, 233, 227;
+    --color-bg-card-rgb: 250, 247, 242;
+    --color-text-muted-rgb: 139, 133, 128;
+    --shadow-luxury: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.06);
+    --shadow-gold: 0 4px 20px rgba(245, 183, 0, 0.3);
+    --shadow-gold-glow: 0 0 30px rgba(245, 183, 0, 0.15);
+    --shadow-gold-glow-lg: 0 0 60px rgba(245, 183, 0, 0.12);
+  }
+  :root:not(.dark) body {
+    color: #1C1814;
+  }
+  :root:not(.dark) .text-white { color: #1C1814; }
+  :root:not(.dark) .text-white\/80 { color: rgba(28, 24, 20, 0.8); }
+  :root:not(.dark) .text-white\/60 { color: rgba(28, 24, 20, 0.6); }
+  :root:not(.dark) .border-white\/5 { border-color: rgba(0, 0, 0, 0.06); }
+  :root:not(.dark) .border-white\/10 { border-color: rgba(0, 0, 0, 0.1); }
+  :root:not(.dark) .border-white\/20 { border-color: rgba(0, 0, 0, 0.16); }
+  :root:not(.dark) .border-white\/30 { border-color: rgba(0, 0, 0, 0.2); }
+  :root:not(.dark) .bg-white\/5 { background-color: rgba(0, 0, 0, 0.04); }
+  :root:not(.dark) .bg-white\/10 { background-color: rgba(0, 0, 0, 0.06); }
+  :root:not(.dark) .bg-white\/20 { background-color: rgba(0, 0, 0, 0.08); }
+  :root:not(.dark) .group:hover .group-hover\:bg-white\/10 { background-color: rgba(0, 0, 0, 0.06); }
+  :root:not(.dark) .placeholder-muted { --tw-placeholder-color: #8B8580; }
+  :root:not(.dark) .text-muted { color: #8B8580; }
+  :root:not(.dark) .hover\:text-white:hover { color: #1C1814; }
+  :root:not(.dark) .group:hover .group-hover\:text-white { color: #1C1814; }
+  :root:not(.dark) .card { border-color: rgba(0, 0, 0, 0.06); }
+
+  .dark {
+    --color-bg-rgb: 5, 8, 22;
+    --color-bg-secondary-rgb: 11, 17, 32;
+    --color-bg-card-rgb: 16, 24, 39;
+    --color-text-muted-rgb: 148, 163, 184;
+    --shadow-luxury: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.25);
+    --shadow-gold: 0 4px 20px rgba(245, 183, 0, 0.3);
+    --shadow-gold-glow: 0 0 30px rgba(245, 183, 0, 0.15);
+    --shadow-gold-glow-lg: 0 0 60px rgba(245, 183, 0, 0.1);
+  }
+  .dark body {
+    color: #FFFFFF;
+  }
+
+  body {
+    @apply bg-background font-body antialiased transition-colors duration-300;
+    font-weight: 400;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+
+  [dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+  [dir="rtl"] .ltr-only {
+    display: none;
+  }
+  [dir="rtl"] .flex-row {
+    flex-direction: row-reverse;
+  }
+  [dir="rtl"] .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+  [dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+  [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+  [dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+  [dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+  [dir="rtl"] .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+
+  [lang="ar"] body {
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 500;
+  }
+  [lang="ar"] h1,
+  [lang="ar"] h2,
+  [lang="ar"] h3,
+  [lang="ar"] h4,
+  [lang="ar"] h5,
+  [lang="ar"] h6 {
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+  }
+  [lang="ar"] .btn-primary,
+  [lang="ar"] .btn-outline {
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glass;
+  }
+  .glass-dark {
+    @apply bg-card/80 backdrop-blur-xl border border-white/5 shadow-glass;
+  }
+  .glass-gold {
+    @apply bg-gold-500/10 backdrop-blur-xl border border-gold-500/20 shadow-gold;
+  }
+  .btn-primary {
+    @apply bg-gold-500 text-[#1C1814] font-semibold px-8 py-3 rounded-xl shadow-gold hover:shadow-gold-glow hover:bg-gold-400 hover:scale-105 transition-all duration-300 font-heading;
+  }
+  .btn-outline {
+    @apply border border-gold-500 text-gold-500 px-8 py-3 rounded-xl hover:bg-gold-500 hover:text-[#1C1814] transition-all duration-300 font-heading;
+  }
+  .btn-ghost {
+    @apply text-white/80 hover:text-gold-500 transition-colors duration-300;
+  }
+  .input-field {
+    @apply w-full bg-card border border-white/10 rounded-xl px-4 py-3 text-white placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all duration-300;
+  }
+  .card {
+    @apply bg-card border border-white/5 rounded-2xl shadow-luxury;
+  }
+  .card-hover {
+    @apply card hover:border-gold-500/30 hover:shadow-gold-glow-lg transition-all duration-500;
+  }
+  .text-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+  .section-title {
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+  .section-subtitle {
+    @apply text-gold-500 uppercase tracking-[0.2em] text-sm font-medium;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root ::-webkit-scrollbar-track {
+  background: #EDE9E3;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #050816;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #F5B700;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C49200;
+}
+
+.gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}

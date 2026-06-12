@@ -26,7 +26,7 @@ export default function Properties() {
 
   const [searchTerm, setSearchTerm] = useState(searchParams.get('keyword') || '');
   const [selectedType, setSelectedType] = useState(searchParams.get('type') || '');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 30000000]);
   const [sortBy, setSortBy] = useState('newest');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
@@ -125,7 +125,7 @@ export default function Properties() {
                 <input
                   type="range"
                   min={0}
-                  max={10000000}
+                  max={30000000}
                   step={100000}
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
@@ -133,7 +133,7 @@ export default function Properties() {
                 />
                 <div className="flex justify-between text-xs text-muted mt-1">
                   <span>$0</span>
-                  <span>$10M</span>
+                  <span>$30M</span>
                 </div>
               </div>
 

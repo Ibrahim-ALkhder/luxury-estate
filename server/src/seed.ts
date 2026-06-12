@@ -182,7 +182,7 @@ export function seed() {
   }
 
   // Seed properties with version check
-  const SEED_VERSION = '2';
+  const SEED_VERSION = '3';
   const currentVer = db.prepare("SELECT value FROM settings WHERE key = 'seed_version'").get() as any;
   if (currentVer?.value === SEED_VERSION) {
     console.log('Seed properties already up to date. Skipping.');
@@ -203,7 +203,7 @@ export function seed() {
       @id, @title_en, @title_ar, @description_en, @description_ar,
       @price, @location_en, @location_ar, @image, @type, 'available',
       @bedrooms, @bathrooms, @area, @features_en, @features_ar,
-      @floor || NULL, @occupancy || NULL, @measurements, @sound_insulation,
+      @floor, @occupancy, @measurements, @sound_insulation,
       @daylight_factor, @ceiling_height, @floor_plan_image, @has_advanced
     )
   `);

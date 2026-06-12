@@ -11,6 +11,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "express": "^4.21.0",
     "@hookform/resolvers": "^3.3.0",
     "@react-three/drei": "^9.88.0",
     "@react-three/fiber": "^8.15.0",

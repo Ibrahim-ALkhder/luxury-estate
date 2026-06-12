@@ -21,6 +21,7 @@ app.use(cors({
     'http://127.0.0.1:3000',
     'https://luxury-estate-web.onrender.com',
     'https://luxury-estate-client.onrender.com',
+    'https://luxury-estate-app.onrender.com',
   ],
   credentials: true,
 }));

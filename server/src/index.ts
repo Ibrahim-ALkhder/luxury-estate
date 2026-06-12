@@ -15,7 +15,15 @@ import messageRoutes from './routes/messages.js';
 const PORT = parseInt(process.env.PORT || '3001', 10);
 
 const app = express();
-app.use(cors({ origin: ['http://localhost:3000', 'http://127.0.0.1:3000'] }));
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://luxury-estate-web.onrender.com',
+    'https://luxury-estate-client.onrender.com',
+  ],
+  credentials: true,
+}));
 app.use(express.json({ limit: '10mb' }));
 
 // Initialize database

@@ -1,6 +1,7 @@
 services:
-  - type: static
+  - type: web
     name: luxury-estate-web
+    runtime: static
     rootDir: .
     buildCommand: npm install && npx vite build
     staticPublishPath: ./dist

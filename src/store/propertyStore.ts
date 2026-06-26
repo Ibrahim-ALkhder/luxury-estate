@@ -235,3 +235,22 @@ export const usePropertyStore = create<PropertyStore>()(
     }
   )
 );
+
+// Cross-tab real-time sync: when localStorage changes in another tab,
+// rehydrate this tab's store so all tabs stay in sync without refresh.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'luxury-properties' && e.newValue) {
+      try {
+        const parsed = JSON.parse(e.newValue);
+        if (parsed?.state?.properties) {
+          usePropertyStore.setState({
+            properties: parsed.state.properties.map((old: any) => migrateProperty(old)),
+          });
+        }
+      } catch {
+        // ignore malformed data
+      }
+    }
+  });
+}

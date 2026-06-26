@@ -174,6 +174,9 @@ export function migrateProperty(old: any): PropertyData {
     type: old.type || '',
     image: old.image || '',
     status: old.status || 'available',
+    description: old.description && typeof old.description === 'object' && !Array.isArray(old.description)
+      ? old.description
+      : { en: old.description || '', ar: '' },
     features: Array.isArray(old.features)
       ? { en: old.features, ar: [] }
       : old.features && typeof old.features === 'object' && !Array.isArray(old.features)
@@ -193,27 +196,42 @@ export const usePropertyStore = create<PropertyStore>()(
   persist(
     (set) => ({
       properties: defaultProperties,
-      addProperty: (property) => set((state) => ({ properties: [property, ...state.properties] })),
-      updateProperty: (id, data) =>
+      addProperty: (property) => {
+        set((state) => ({ properties: [property, ...state.properties] }));
+        api.post('/properties', property).catch(() => {});
+      },
+      updateProperty: (id, data) => {
         set((state) => ({
           properties: state.properties.map((p) => (p.id === id ? { ...p, ...data } : p)),
-        })),
-      deleteProperty: (id) =>
-        set((state) => ({ properties: state.properties.filter((p) => p.id !== id) })),
+        }));
+        api.put(`/properties/${id}`, data).catch(() => {});
+      },
+      deleteProperty: (id) => {
+        set((state) => ({ properties: state.properties.filter((p) => p.id !== id) }));
+        api.delete(`/properties/${id}`).catch(() => {});
+      },
       fetchProperties: async () => {
         try {
           const data = await api.get<{ properties: PropertyData[] }>('/properties');
-          set({ properties: data.properties });
+          if (data.properties && data.properties.length > 0) {
+            set({ properties: data.properties });
+          }
         } catch {
-          // backend unavailable — keep defaults
+          // backend unavailable — keep defaults / persisted
         }
       },
     }),
     {
       name: 'luxury-properties',
       storage: createJSONStorage(() => localStorage),
-      partialize: () => ({}), // don't persist properties — always start from defaults
-      merge: (persisted, current) => current, // ignore persisted state
+      partialize: (state) => ({ properties: state.properties }),
+      merge: (persisted, current) => {
+        const p = persisted as { properties?: PropertyData[] } | undefined;
+        if (p?.properties && Array.isArray(p.properties) && p.properties.length > 0) {
+          return { ...current, properties: p.properties.map((old: any) => migrateProperty(old)) };
+        }
+        return current;
+      },
     }
   )
 );

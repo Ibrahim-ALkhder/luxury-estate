@@ -86,7 +86,11 @@
     "phoneValue": "+971 4 123 4567",
     "emailValue": "info@luxestate.com",
     "hoursValue": "Sat - Thu, 9:00 AM - 6:00 PM",
-    "whatsapp": "WhatsApp Us"
+    "whatsapp": "WhatsApp Us",
+    "name": "Full Name",
+    "email": "Email Address",
+    "message": "Your Message",
+    "send": "Send Message"
   },
   "footer": {
     "description": "The world's premier luxury real estate consultancy.",
@@ -161,12 +165,6 @@
     "bookingFailed": "Booking failed. Please try again or contact support.",
     "loginRequired": "Please log in first to book a property.",
     "contactError": "Failed to send message. Please try again."
-  },
-  "contact": {
-    "name": "Full Name",
-    "email": "Email Address",
-    "message": "Your Message",
-    "send": "Send Message"
   },
   "admin": {
     "login": "Admin Login",

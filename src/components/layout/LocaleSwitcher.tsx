@@ -12,7 +12,7 @@ export default function LocaleSwitcher() {
   return (
     <button
       onClick={toggleLocale}
-      className="text-white/70 hover:text-gold-500 transition-colors text-xs font-medium uppercase tracking-widest"
+      className="text-on-dark/70 hover:text-gold-500 transition-colors text-xs font-medium uppercase tracking-widest"
     >
       {i18n.language === 'ar' ? 'EN' : 'AR'}
     </button>

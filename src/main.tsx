@@ -6,6 +6,9 @@ import './i18n';
 import './index.css';
 import { ThemeProvider } from './lib/ThemeProvider';
 
+// Clear stale persisted property data from previous versions
+try { localStorage.removeItem('luxury-properties'); } catch { /* ignore */ }
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>

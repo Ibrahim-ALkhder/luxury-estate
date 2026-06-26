@@ -30,11 +30,11 @@ export default function SearchSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           onSubmit={handleSearch}
-          className="glass-dark p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-gold-glow-lg border border-gold-500/20"
+          className="glass-dark p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-gold-glow-lg border border-champagne-300/20"
         >
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="md:col-span-1">
-              <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="sm:col-span-2 md:col-span-1">
+              <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                 {t('search.keyword')}
               </label>
               <input
@@ -42,17 +42,17 @@ export default function SearchSection() {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder={t('search.keyword')}
-                className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+                className="w-full bg-background/50 border border-default rounded-xl px-4 py-3 text-primary placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+              <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                 {t('search.type')}
               </label>
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+                className="w-full bg-background/50 border border-default rounded-xl px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all text-sm"
               >
                 <option value="">{t('search.type')}</option>
                 <option value="Villa">Villa</option>
@@ -62,7 +62,7 @@ export default function SearchSection() {
               </select>
             </div>
             <div>
-              <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+              <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                 {t('search.minPrice')}
               </label>
               <input
@@ -70,11 +70,11 @@ export default function SearchSection() {
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
                 placeholder="0"
-                className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+                className="w-full bg-background/50 border border-default rounded-xl px-4 py-3 text-primary placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+              <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                 {t('search.maxPrice')}
               </label>
               <input
@@ -82,7 +82,7 @@ export default function SearchSection() {
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
                 placeholder="9999999"
-                className="w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all"
+                className="w-full bg-background/50 border border-default rounded-xl px-4 py-3 text-primary placeholder-muted focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all text-sm"
               />
             </div>
           </div>

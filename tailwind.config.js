@@ -21,6 +21,7 @@ export default {
           800: '#624900',
           900: '#312500',
         },
+        'text-on-dark': 'rgba(var(--color-text-on-dark-rgb), <alpha-value>)',
         muted: 'rgba(var(--color-text-muted-rgb), <alpha-value>)',
         cream: {
           50: '#FFFDF7',
@@ -33,6 +34,20 @@ export default {
           700: '#8C700B',
           800: '#604B08',
           900: '#3D2C04',
+        },
+        champagne: {
+          50: '#FBF8F4',
+          100: '#F5EDE1',
+          200: '#EDE0CD',
+          300: '#E8D5B7',
+          400: '#D4BFA1',
+          500: '#C4A88B',
+        },
+        bronze: {
+          300: '#B8956E',
+          400: '#9C7A56',
+          500: '#8B6F47',
+          600: '#6E5535',
         },
         charcoal: {
           50: '#f5f3f0',
@@ -48,8 +63,10 @@ export default {
         },
       },
       fontFamily: {
-        heading: ['Poppins', 'sans-serif'],
-        body: ['Poppins', 'sans-serif'],
+        heading: ['Instrument Serif', 'Georgia', 'serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Instrument Serif', 'Georgia', 'serif'],
+        utility: ['Poppins', 'system-ui', 'sans-serif'],
         arabic: ['Tajawal', 'sans-serif'],
       },
       backgroundImage: {

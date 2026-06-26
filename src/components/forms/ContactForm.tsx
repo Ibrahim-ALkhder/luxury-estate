@@ -40,7 +40,7 @@ export default function ContactForm() {
         <textarea {...register('message')} rows={5} placeholder={t('contact.message')} className="input-field" />
         {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>}
       </div>
-      <button type="submit" disabled={isSubmitting} className="btn-primary w-full">
+      <button type="submit" disabled={isSubmitting} className="btn-primary w-full font-utility">
         {isSubmitting ? t('contact.sending') : t('contact.send')}
       </button>
     </form>

@@ -1,14 +1,24 @@
 import express from 'express';
-import path from 'path';
+import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { readFileSync } from 'fs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+const PORT = process.env.PORT || 3000;
+const dist = join(__dirname, 'dist');
+
+app.use(express.static(dist));
+
+app.get('*', (_req, res) => {
+  try {
+    const html = readFileSync(join(dist, 'index.html'), 'utf-8');
+    res.send(html);
+  } catch {
+    res.status(404).send('Not found');
+  }
 });
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

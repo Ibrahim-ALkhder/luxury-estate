@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { PropertyData } from '../types';
+import type { PropertyData as PropertyDataOrig } from '../types';
+export type PropertyData = PropertyDataOrig;
 import { api } from '../services/api';
 
 const defaultProperties: PropertyData[] = [
@@ -160,8 +161,12 @@ export function migrateProperty(old: any): PropertyData {
   return {
     hasAdvanced: old.hasAdvanced ?? false,
     id: old.id || '',
-    title: typeof old.title === 'object' ? old.title : { en: old.title || '', ar: '' },
-    location: typeof old.location === 'object' ? old.location : { en: old.location || '', ar: '' },
+    title: old.title && typeof old.title === 'object' && !Array.isArray(old.title)
+      ? old.title
+      : { en: old.title || '', ar: '' },
+    location: old.location && typeof old.location === 'object' && !Array.isArray(old.location)
+      ? old.location
+      : { en: old.location || '', ar: '' },
     price: old.price || 0,
     bedrooms: old.bedrooms || 0,
     bathrooms: old.bathrooms || 0,
@@ -169,7 +174,11 @@ export function migrateProperty(old: any): PropertyData {
     type: old.type || '',
     image: old.image || '',
     status: old.status || 'available',
-    features: typeof old.features === 'object' ? old.features : { en: old.features || [], ar: [] },
+    features: Array.isArray(old.features)
+      ? { en: old.features, ar: [] }
+      : old.features && typeof old.features === 'object' && !Array.isArray(old.features)
+        ? old.features
+        : { en: old.features || [], ar: [] },
     floor: old.floor ?? undefined,
     occupancy: old.occupancy ?? undefined,
     measurements: old.measurements || undefined,
@@ -203,11 +212,8 @@ export const usePropertyStore = create<PropertyStore>()(
     {
       name: 'luxury-properties',
       storage: createJSONStorage(() => localStorage),
-      onRehydrateStorage: () => (state) => {
-        if (state?.properties) {
-          state.properties = state.properties.map(migrateProperty);
-        }
-      },
+      partialize: () => ({}), // don't persist properties — always start from defaults
+      merge: (persisted, current) => current, // ignore persisted state
     }
   )
 );

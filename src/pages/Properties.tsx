@@ -67,27 +67,27 @@ export default function Properties() {
 
   return (
     <div className="min-h-screen bg-background pt-28 pb-24">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-10 sm:mb-12"
         >
-          <h1 className="section-title text-white">{t('propertiesPage.title')}</h1>
-          <p className="mt-3 text-muted">{t('propertiesPage.subtitle')}</p>
+          <h1 className="section-title text-on-dark">{t('propertiesPage.title')}</h1>
+          <p className="mt-3 text-muted font-body">{t('propertiesPage.subtitle')}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-1"
           >
-            <div className="card p-6 rounded-2xl space-y-6 sticky top-28">
+            <div className="card p-5 sm:p-6 rounded-2xl space-y-6 sticky top-28">
               <div>
-                <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+                <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                   <i className="fa-solid fa-search mr-2" />
                   {t('propertiesPage.searchPlaceholder')}
                 </label>
@@ -101,7 +101,7 @@ export default function Properties() {
               </div>
 
               <div>
-                <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+                <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                   <i className="fa-solid fa-filter mr-2" />
                   {t('search.type')}
                 </label>
@@ -118,7 +118,7 @@ export default function Properties() {
               </div>
 
               <div>
-                <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+                <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                   <i className="fa-solid fa-dollar-sign mr-2" />
                   {t('propertiesPage.priceRange')} ({t('propertiesPage.max')} ${(priceRange[1] / 1000000).toFixed(0)}M)
                 </label>
@@ -138,7 +138,7 @@ export default function Properties() {
               </div>
 
               <div>
-                <label className="block text-xs text-muted mb-2 uppercase tracking-wider font-medium">
+                <label className="block text-[10px] sm:text-xs text-muted mb-2 uppercase tracking-wider font-utility font-semibold">
                   <i className="fa-solid fa-arrow-up-wide-short mr-2" />
                   {t('propertiesPage.sortBy')}
                 </label>
@@ -158,26 +158,28 @@ export default function Properties() {
 
           <div className="lg:col-span-3">
             <div className="flex justify-between items-center mb-6">
-              <p className="text-sm text-muted">
+              <p className="text-sm text-muted font-body">
                 {filtered.length} {t('propertiesPage.title')}
               </p>
               <div className="flex gap-2">
                 <button
                   onClick={() => setViewMode('grid')}
+                  aria-label="Grid view"
                   className={`p-2 rounded-lg transition-all ${
                     viewMode === 'grid'
                       ? 'bg-gold-500/20 text-gold-500 border border-gold-500/30'
-                      : 'bg-white/5 text-muted border border-white/10 hover:text-white'
+                      : 'bg-glass-medium text-muted border border-default hover:text-on-dark'
                   }`}
                 >
                   <i className="fa-solid fa-grid-2" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
+                  aria-label="List view"
                   className={`p-2 rounded-lg transition-all ${
                     viewMode === 'list'
                       ? 'bg-gold-500/20 text-gold-500 border border-gold-500/30'
-                      : 'bg-white/5 text-muted border border-white/10 hover:text-white'
+                      : 'bg-glass-medium text-muted border border-default hover:text-on-dark'
                   }`}
                 >
                   <i className="fa-solid fa-list" />
@@ -191,16 +193,16 @@ export default function Properties() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="card p-16 text-center rounded-2xl"
+                  className="card p-12 sm:p-16 text-center rounded-2xl"
                 >
                   <i className="fa-solid fa-building-circle-xmark text-5xl text-muted/40 mb-4" />
-                  <p className="text-muted">{t('propertiesPage.noResults')}</p>
+                  <p className="text-muted font-body">{t('propertiesPage.noResults')}</p>
                 </motion.div>
               ) : (
                 <div
                   className={
                     viewMode === 'grid'
-                      ? 'grid grid-cols-1 md:grid-cols-2 gap-6'
+                      ? 'grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6'
                       : 'flex flex-col gap-4'
                   }
                 >
@@ -218,9 +220,9 @@ export default function Properties() {
                         >
                           <Link
                             to={`/properties/${p.id}`}
-                            className="card-hover flex rounded-2xl overflow-hidden group"
+                            className="card-hover flex flex-col sm:flex-row rounded-2xl overflow-hidden group"
                           >
-                            <div className="w-56 h-44 shrink-0 relative overflow-hidden">
+                            <div className="w-full sm:w-56 h-48 sm:h-44 shrink-0 relative overflow-hidden">
                               <div className="absolute top-3 left-3 z-10">
                                 <FavoriteButton propertyId={p.id} />
                               </div>
@@ -230,27 +232,27 @@ export default function Properties() {
                                 className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               />
                             </div>
-                            <div className="flex-1 p-6">
+                            <div className="flex-1 p-5 sm:p-6">
                               <div className="flex items-start justify-between">
                                 <div>
-                                  <h3 className="font-heading text-xl font-bold text-white group-hover:text-gold-500 transition-colors">{title}</h3>
-                                  <p className="text-muted text-sm mt-1">
+                                  <h3 className="font-heading text-xl text-on-dark group-hover:text-gold-500 transition-colors">{title}</h3>
+                                  <p className="text-muted text-sm mt-1 font-body">
                                     <i className="fa-solid fa-location-dot text-gold-500 mr-1" />
                                     {location}
                                   </p>
                                 </div>
-                                <span className={`text-xs px-3 py-1 rounded-full border ${statusColors[p.status] || 'text-muted'}`}>
+                                <span className={`text-[10px] sm:text-xs px-3 py-1 rounded-full border font-utility ${statusColors[p.status] || 'text-muted'}`}>
                                   {p.status === 'available' ? t('propertyDetails.status.available') : p.status === 'sold' ? t('propertyDetails.status.sold') : t('propertyDetails.status.underConstruction')}
                                 </span>
                               </div>
-                              <div className="flex gap-4 mt-3 text-sm text-muted">
+                              <div className="flex gap-4 mt-3 text-sm text-muted font-body">
                                 <span><i className="fa-solid fa-bed text-gold-500 mr-1" />{p.bedrooms} {t('propertiesPage.beds')}</span>
                                 <span><i className="fa-solid fa-bath text-gold-500 mr-1" />{p.bathrooms} {t('propertiesPage.baths')}</span>
                                 <span><i className="fa-solid fa-ruler-combined text-gold-500 mr-1" />{p.area} {t('propertiesPage.area')}</span>
                               </div>
                               <div className="flex justify-between items-center mt-4">
-                                <span className="text-xl font-bold text-gold-500">${p.price.toLocaleString()}</span>
-                                <span className="text-sm text-muted group-hover:text-gold-500 transition-colors">
+                                <span className="text-xl font-bold text-gold-500 font-utility">${p.price.toLocaleString()}</span>
+                                <span className="text-sm text-muted group-hover:text-gold-500 transition-colors font-body">
                                   {t('propertiesPage.details')} <i className="fa-solid fa-arrow-right ml-1" />
                                 </span>
                               </div>
@@ -271,7 +273,7 @@ export default function Properties() {
                           to={`/properties/${p.id}`}
                           className="card-hover group block rounded-2xl overflow-hidden"
                         >
-                          <div className="relative h-56 overflow-hidden">
+                          <div className="relative aspect-[4/3] overflow-hidden">
                             <img
                               src={p.image}
                               alt={title}
@@ -280,7 +282,7 @@ export default function Properties() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
                             <div className="absolute top-4 right-4 flex gap-2 z-10">
-                              <span className={`text-xs px-3 py-1 rounded-full border backdrop-blur-sm ${statusColors[p.status] || 'text-muted bg-white/5'}`}>
+                              <span className={`text-[10px] sm:text-xs px-3 py-1 rounded-full border backdrop-blur-sm font-utility ${statusColors[p.status] || 'text-muted bg-glass-medium'}`}>
                                 {p.status === 'available' ? t('propertyDetails.status.available') : p.status === 'sold' ? t('propertyDetails.status.sold') : t('propertyDetails.status.underConstruction')}
                               </span>
                             </div>
@@ -288,20 +290,20 @@ export default function Properties() {
                               <FavoriteButton propertyId={p.id} />
                             </div>
                           </div>
-                          <div className="p-6">
-                            <div className="flex items-center text-muted text-xs mb-2">
+                          <div className="p-5 sm:p-6">
+                            <div className="flex items-center text-muted text-xs mb-2 font-body">
                               <i className="fa-solid fa-location-dot text-gold-500 mr-1" />
                               {location}
                             </div>
-                            <h3 className="font-heading text-lg font-bold text-white group-hover:text-gold-500 transition-colors mb-2">{title}</h3>
-                            <div className="flex gap-4 text-muted text-xs mb-4">
+                            <h3 className="font-heading text-lg text-on-dark group-hover:text-gold-500 transition-colors mb-2">{title}</h3>
+                            <div className="flex gap-4 text-muted text-xs mb-4 font-body">
                               <span className="flex items-center gap-1"><i className="fa-solid fa-bed text-gold-500" /> {p.bedrooms} {t('propertiesPage.beds')}</span>
                               <span className="flex items-center gap-1"><i className="fa-solid fa-bath text-gold-500" /> {p.bathrooms} {t('propertiesPage.baths')}</span>
                               <span className="flex items-center gap-1"><i className="fa-solid fa-ruler-combined text-gold-500" /> {p.area} {t('propertiesPage.area')}</span>
                             </div>
-                            <div className="flex justify-between items-center pt-4 border-t border-white/5">
-                              <span className="text-xl font-bold text-gold-500">${p.price.toLocaleString()}</span>
-                              <span className="inline-flex items-center gap-2 text-sm text-muted group-hover:text-gold-500 transition-colors">
+                            <div className="flex justify-between items-center pt-4 border-t border-subtle">
+                              <span className="text-xl font-bold text-gold-500 font-utility">${p.price.toLocaleString()}</span>
+                              <span className="inline-flex items-center gap-2 text-sm text-muted group-hover:text-gold-500 transition-colors font-body">
                                 {t('propertiesPage.details')} <i className="fa-solid fa-arrow-right text-xs" />
                               </span>
                             </div>

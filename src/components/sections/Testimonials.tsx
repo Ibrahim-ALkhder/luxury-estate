@@ -29,7 +29,8 @@ export default function Testimonials() {
 
   return (
     <section className="py-24 md:py-32 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-champagne-300/10 via-transparent to-transparent" />
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/3 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent" />
 
       <div className="mx-auto max-w-5xl px-6 relative z-10">
         <motion.div
@@ -39,10 +40,10 @@ export default function Testimonials() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="section-title text-white">{t('testimonials.title')}</h2>
+          <h2 className="section-title text-on-dark">{t('testimonials.title')}</h2>
         </motion.div>
 
-        <div className="relative h-[320px] md:h-[280px]">
+        <div className="relative min-h-[280px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -50,7 +51,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.6 }}
-              className="glass-dark rounded-3xl p-8 md:p-12 text-center max-w-3xl mx-auto border border-gold-500/10"
+              className="glass-dark rounded-3xl p-8 md:p-12 text-center max-w-3xl mx-auto border border-champagne-300/20"
             >
               <div className="flex justify-center gap-1 mb-6">
                 {Array.from({ length: testimonials[current].rating }).map((_, i) => (
@@ -59,13 +60,13 @@ export default function Testimonials() {
                   </svg>
                 ))}
               </div>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed">&ldquo;{testimonials[current].content}&rdquo;</p>
+              <p className="text-base sm:text-lg md:text-xl text-on-dark/80 leading-relaxed font-body">&ldquo;{testimonials[current].content}&rdquo;</p>
               <div className="mt-8 flex items-center justify-center gap-4">
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gold-500/30">
                   <img src={avatars[current]} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div className="text-left">
-                  <p className="font-medium text-white">{testimonials[current].name}</p>
+                  <p className="font-medium text-on-dark font-utility">{testimonials[current].name}</p>
                   <p className="text-sm text-muted">{testimonials[current].role}</p>
                 </div>
               </div>
@@ -78,8 +79,9 @@ export default function Testimonials() {
             <button
               key={i}
               onClick={() => setCurrent(i)}
+              aria-label={`Testimonial ${i + 1}`}
               className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${
-                i === current ? 'bg-gold-500 w-8' : 'bg-white/20 hover:bg-white/40'
+                i === current ? 'bg-gold-500 w-8' : 'bg-champagne-300/30 hover:bg-champagne-300/60'
               }`}
             />
           ))}

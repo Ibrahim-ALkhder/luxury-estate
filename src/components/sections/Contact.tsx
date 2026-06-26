@@ -14,7 +14,8 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-champagne-300/10 via-transparent to-transparent" />
+      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-bronze-500/5 via-transparent to-transparent" />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <motion.div
@@ -25,7 +26,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <span className="section-subtitle">{t('contact.subtitle')}</span>
-          <h2 className="section-title mt-4 text-white">{t('contact.title')}</h2>
+          <h2 className="section-title mt-4 text-on-dark">{t('contact.title')}</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -45,15 +46,15 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
           >
-            <div className="card p-8 rounded-2xl space-y-6">
+            <div className="card p-6 sm:p-8 rounded-2xl space-y-6">
               {companyInfo.map((info) => (
                 <div key={info.label} className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500">
-                    <i className={`fa-solid ${info.icon} text-lg`} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-champagne-300/10 flex items-center justify-center text-gold-500">
+                    <i className={`fa-solid ${info.icon} text-base sm:text-lg`} />
                   </div>
                   <div>
-                    <p className="text-xs text-muted uppercase tracking-wider">{t(info.label)}</p>
-                    <p className="text-white font-medium">{info.value}</p>
+                    <p className="text-[10px] sm:text-xs text-muted uppercase tracking-wider font-utility">{t(info.label)}</p>
+                    <p className="text-on-dark font-medium text-sm sm:text-base">{info.value}</p>
                   </div>
                 </div>
               ))}
@@ -63,7 +64,7 @@ export default function Contact() {
               href="https://wa.me/97141234567"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-all duration-300 font-medium"
+              className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-all duration-300 font-medium font-utility"
             >
               <i className="fa-brands fa-whatsapp text-xl" />
               {t('contact.whatsapp')}

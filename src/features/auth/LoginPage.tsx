@@ -36,8 +36,8 @@ export default function LoginPage() {
           <div className="w-16 h-16 mx-auto rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 mb-4">
             <i className="fa-solid fa-user text-2xl" />
           </div>
-          <h2 className="font-heading text-2xl text-white">{t('auth.signIn')}</h2>
-          <p className="text-muted text-sm mt-2">{t('auth.welcomeBack')}</p>
+          <h2 className="font-heading text-2xl text-on-dark">{t('auth.signIn')}</h2>
+          <p className="text-muted text-sm mt-2 font-body">{t('auth.welcomeBack')}</p>
         </div>
 
         {error && <p className="text-red-400 text-sm text-center mb-4">{error}</p>}

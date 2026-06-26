@@ -1,14 +1,10 @@
 services:
   - type: web
     name: luxury-estate-web
-    runtime: static
+    runtime: node
     rootDir: .
-    buildCommand: npm install && npx vite build
-    staticPublishPath: ./dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
       - key: VITE_API_URL
         value: https://luxury-estate-backend.onrender.com/api

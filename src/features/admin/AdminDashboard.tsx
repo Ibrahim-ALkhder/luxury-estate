@@ -40,6 +40,7 @@ export default function AdminDashboard() {
   const [imagePreview, setImagePreview] = useState<string>('');
   const [activeLang, setActiveLang] = useState<'en' | 'ar'>('en');
 
+  const [navOpen, setNavOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -106,30 +107,39 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center mb-12">
-          <div>
-            <h1 className="section-title text-white">{t('admin.dashboard')}</h1>
-            <p className="text-muted mt-1">{t('admin.managePortfolio')}</p>
-          </div>
-          <div className="flex gap-3">
-            <button onClick={() => navigate('/secure-portal/bookings')} className="btn-outline text-sm">
-              <i className="fa-solid fa-calendar-check mr-2" />
-              {t('admin.bookingsTitle')}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-12">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="section-title text-white">{t('admin.dashboard')}</h1>
+              <p className="text-muted mt-1">{t('admin.managePortfolio')}</p>
+            </div>
+            <button
+              onClick={() => setNavOpen(!navOpen)}
+              className="sm:hidden p-2 rounded-lg text-muted hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <i className={`fa-solid ${navOpen ? 'fa-xmark' : 'fa-bars'} text-xl`} />
             </button>
-            <button onClick={() => navigate('/secure-portal/leads')} className="btn-outline text-sm">
-              <i className="fa-solid fa-users mr-2" />
+          </div>
+          <div className={`${navOpen ? 'flex' : 'hidden'} sm:flex flex-col sm:flex-row gap-2 sm:gap-3`}>
+            <button onClick={() => { navigate('/secure-portal/bookings'); setNavOpen(false); }} className="btn-outline text-xs sm:text-sm">
+              <i className="fa-solid fa-calendar-check mr-1 sm:mr-2" />
+              <span className="sm:hidden">{t('admin.bookingsTitle')}</span>
+              <span className="hidden sm:inline">{t('admin.bookingsTitle')}</span>
+            </button>
+            <button onClick={() => { navigate('/secure-portal/leads'); setNavOpen(false); }} className="btn-outline text-xs sm:text-sm">
+              <i className="fa-solid fa-users mr-1 sm:mr-2" />
               {t('admin.leads')}
             </button>
-            <button onClick={() => navigate('/secure-portal/messages')} className="btn-outline text-sm">
-              <i className="fa-solid fa-message mr-2" />
+            <button onClick={() => { navigate('/secure-portal/messages'); setNavOpen(false); }} className="btn-outline text-xs sm:text-sm">
+              <i className="fa-solid fa-message mr-1 sm:mr-2" />
               {t('admin.messages')}
             </button>
-            <button onClick={() => navigate('/secure-portal/settings')} className="btn-outline text-sm">
-              <i className="fa-solid fa-gear mr-2" />
+            <button onClick={() => { navigate('/secure-portal/settings'); setNavOpen(false); }} className="btn-outline text-xs sm:text-sm">
+              <i className="fa-solid fa-gear mr-1 sm:mr-2" />
               {t('admin.settings')}
             </button>
-            <button onClick={() => { logout(); navigate('/secure-portal'); }} className="btn-outline text-sm">
-              <i className="fa-solid fa-right-from-bracket mr-2" />
+            <button onClick={() => { logout(); navigate('/secure-portal'); }} className="btn-outline text-xs sm:text-sm">
+              <i className="fa-solid fa-right-from-bracket mr-1 sm:mr-2" />
               {t('admin.logout')}
             </button>
           </div>
@@ -174,30 +184,30 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="font-heading text-xl font-bold text-white">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
+          <h2 className="font-heading text-lg sm:text-xl font-bold text-white">
             <i className="fa-solid fa-list text-gold-500 mr-3" />
             {t('admin.properties')}
           </h2>
           <button
             onClick={() => { setShowForm(true); setFormData(emptyProperty); setEditingId(null); }}
-            className="btn-primary flex items-center gap-2 text-sm"
+            className="btn-primary flex items-center justify-center gap-2 text-xs sm:text-sm w-full sm:w-auto"
           >
             <i className="fa-solid fa-plus" /> {t('admin.addProperty')}
           </button>
         </div>
 
         {showForm && (
-          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="card rounded-3xl max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="font-heading text-2xl text-white">
+          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
+            <div className="card rounded-2xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-8 max-h-[100dvh] sm:max-h-[90vh] overflow-y-auto">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+                <h2 className="font-heading text-lg sm:text-2xl text-white">
                   {editingId ? t('admin.editProperty') : t('admin.addProperty')}
                 </h2>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <button
                     onClick={() => setActiveLang(activeLang === 'en' ? 'ar' : 'en')}
-                    className="flex items-center gap-2 text-sm text-gold-500 hover:text-gold-400 transition-colors"
+                    className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gold-500 hover:text-gold-400 transition-colors"
                   >
                     <i className="fa-solid fa-language" />
                     {activeLang === 'en' ? 'English' : 'العربية'}
@@ -281,7 +291,7 @@ export default function AdminDashboard() {
                     <summary className="cursor-pointer text-gold-500 font-medium flex items-center gap-2">
                       <i className="fa-solid fa-chevron-down" /> {t('admin.advancedDetails')}
                     </summary>
-                    <div className="grid grid-cols-2 gap-4 mt-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
                       <div>
                         <label className="block text-xs text-muted mb-1">{t('propertyDetails.floor')}</label>
                         <input type="number" value={formData.floor || ''} onChange={e => setFormData({ ...formData, floor: +e.target.value })} className="input-field" />
@@ -363,15 +373,16 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-4 mt-6">
-                <button onClick={() => setShowForm(false)} className="btn-outline">{t('admin.cancel')}</button>
-                <button onClick={handleSave} className="btn-primary">{t('admin.save')}</button>
+              <div className="flex flex-col sm:flex-row sm:justify-end gap-3 mt-6">
+                <button onClick={() => setShowForm(false)} className="btn-outline w-full sm:w-auto text-sm">{t('admin.cancel')}</button>
+                <button onClick={handleSave} className="btn-primary w-full sm:w-auto text-sm">{t('admin.save')}</button>
               </div>
             </div>
           </div>
         )}
 
-        <div className="card rounded-2xl overflow-hidden">
+        {/* Desktop: table view */}
+        <div className="hidden sm:block card rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -427,6 +438,41 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
+        </div>
+
+        {/* Mobile: card list view */}
+        <div className="sm:hidden space-y-3">
+          {properties.map((p) => (
+            <div key={p.id} className="card rounded-2xl p-4">
+              <div className="flex gap-3">
+                <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+                  <img src={p.image} alt={p.title.en} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-white font-medium text-sm truncate">{p.title.en}</p>
+                  <p className="text-muted text-xs truncate mt-0.5">{p.location.en}</p>
+                  <p className="text-gold-500 font-medium text-sm mt-1">${p.price.toLocaleString()}</p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                <span className={`text-xs px-3 py-1 rounded-full border ${
+                  p.status === 'available' ? 'text-green-400 bg-green-500/10 border-green-500/30' :
+                  p.status === 'sold' ? 'text-red-400 bg-red-500/10 border-red-500/30' :
+                  'text-yellow-400 bg-yellow-500/10 border-yellow-500/30'
+                }`}>
+                  {p.status === 'available' ? t('admin.available') : p.status === 'sold' ? t('admin.sold') : t('admin.underConstruction')}
+                </span>
+                <div className="flex gap-2">
+                  <button onClick={() => handleEdit(p)} className="p-2 rounded-lg bg-gold-500/10 text-gold-500 hover:bg-gold-500/20 transition-all text-xs">
+                    <i className="fa-solid fa-pen-to-square" />
+                  </button>
+                  <button onClick={() => deleteProperty(p.id)} className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all text-xs">
+                    <i className="fa-solid fa-trash-can" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
